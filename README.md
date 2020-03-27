@@ -1,4 +1,3 @@
-<img src="https://raw.githubusercontent.com/LMaroto/be-the-hero/master/frontend/src/assets/logo.svg"></img>
 # Be The Hero 
 Aplicação desenvolvida durante a Semana OmniStack 11.0
 

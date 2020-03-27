@@ -8,19 +8,19 @@ O **Be the Hero** é um projeto cujo intuito é conectar pessoas interessadas em
 
 Neste projeto foram utilizadas as tecnologias:
 
--- [Node.js](https://nodejs.org/en/)
+- [Node.js](https://nodejs.org/en/)
 
--- [ReactJS](https://reactjs.org/)
+- [ReactJS](https://reactjs.org/)
 
---[React Native](https://reactnative.dev/)
+- [React Native](https://reactnative.dev/)
 
---[Expo](https://expo.io/)
+- [Expo](https://expo.io/)
 
 E alguns extras:
 
---[Express](https://expressjs.com/pt-br/)
+- [Express](https://expressjs.com/pt-br/)
 
---[KnexJS)(http://knexjs.org/)
+- [KnexJS)(http://knexjs.org/)
 
 
 

@@ -15,9 +15,12 @@ export default function NewIncident() {
 
   const history = useHistory();
 
+  /* Obtendo ID da ong logada */
   const ongId = localStorage.getItem("ongId");
 
   async function handleNewIncident(e) {
+    /* Acessando rota de criação de novo incident */
+
     e.preventDefault();
 
     const data = {
@@ -55,6 +58,7 @@ export default function NewIncident() {
             Voltar para home
           </Link>
         </section>
+        {/* Formulário que cria o corpo da req. de criação de incidents */}
         <form onSubmit={handleNewIncident}>
           <input
             placeholder="Título do caso"

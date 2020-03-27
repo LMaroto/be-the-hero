@@ -10,12 +10,13 @@ import logoImg from "../../assets/logo.svg";
 
 export default function Profile() {
   const [incidents, setIncidents] = useState([]);
-  
+
   const history = useHistory();
- 
+  /* Obtendo ID e nome da ong que está logada pelo LocalStorage */
   const ongId = localStorage.getItem("ongId");
   const ongName = localStorage.getItem("ongName");
-  
+
+  /* Obtendo casos da ONG logada para já renderizar. */
   useEffect(() => {
     api
       .get("profile", {
@@ -28,26 +29,26 @@ export default function Profile() {
       });
   }, [ongId]);
 
-  async function handleDeleteIncident(id){
-    try{
-      await api.delete(`incidents/${id}`,{
-        headers:{
-          Authorization: ongId,
+  async function handleDeleteIncident(id) {
+    try {
+      /* Acessando rota de delete dos incidentes */
+      await api.delete(`incidents/${id}`, {
+        headers: {
+          Authorization: ongId
         }
       });
-
-      setIncidents(incidents.filter(incident => incident.id !== id))
+      /* Alterando state dos incidents */
+      setIncidents(incidents.filter(incident => incident.id !== id));
+    } catch (err) {
+      alert("Erro ao deletar caso, tente novamente.");
     }
-    catch(err){
-      alert('Erro ao deletar caso, tente novamente.')
-    }
-
   }
-
+  
+  /* Limpando localStorage e redirecionando para a página de logon  */
   function handleLogout() {
     localStorage.clear();
 
-    history.push('/')
+    history.push("/");
   }
 
   return (
@@ -60,30 +61,37 @@ export default function Profile() {
           Cadastrar novo caso
         </Link>
         <button type="button" onClick={handleLogout}>
-          <FiPower size={18} color="#E02041"/>
+          <FiPower size={18} color="#E02041" />
         </button>
       </header>
 
       <h1>Casos cadastrados</h1>
 
       <ul>
-       
-      {incidents.map(incident => (
-         <li key={incident.id}>
-         <strong>CASO:</strong>
-         <p>{incident.title}</p>
+        {incidents.map(incident => (
+          <li key={incident.id}>
+            <strong>CASO:</strong>
+            <p>{incident.title}</p>
 
-         <strong>DESCRIÇÃO:</strong>
-         <p>{incident.description}</p>
+            <strong>DESCRIÇÃO:</strong>
+            <p>{incident.description}</p>
 
-         <strong>VALOR:</strong>
-         <p>{Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(incident.value)}</p>
+            <strong>VALOR:</strong>
+            <p>
+              {Intl.NumberFormat("pt-br", {
+                style: "currency",
+                currency: "BRL"
+              }).format(incident.value)}
+            </p>
 
-         <button type="button" onClick={() => handleDeleteIncident(incident.id)}>
-           <FiTrash2 size={20} color="#a8a8b3" />
-         </button>
-       </li>
-      ))}
+            <button
+              type="button"
+              onClick={() => handleDeleteIncident(incident.id)}
+            >
+              <FiTrash2 size={20} color="#a8a8b3" />
+            </button>
+          </li>
+        ))}
       </ul>
     </div>
   );

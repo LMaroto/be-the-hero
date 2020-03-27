@@ -15,7 +15,7 @@ export default function Routes() {
   const [uf, setUf] = useState("");
 
   const history = useHistory();
-
+   
   async function handleRegister(e) {
     e.preventDefault();
 
@@ -28,8 +28,12 @@ export default function Routes() {
     };
 
     try {
+      /* Acessando rota de cadastro de ONGS, dando alerta com o ID que vem do backend e retornando 
+      para a página de logon */
       const response = await api.post("/ongs", data);
+
       alert(`Seu ID de acesso: ${response.data.id}`);
+      
       history.push('/')
     } catch (err) {
       alert(
@@ -54,6 +58,7 @@ export default function Routes() {
             Não tenho cadastro
           </Link>
         </section>
+        {/* Formulário que cria o corpo da requisição de cadastro */}
         <form onSubmit={handleRegister}>
           <input
             placeholder="Nome da ONG"

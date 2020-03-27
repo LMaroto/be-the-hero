@@ -16,13 +16,14 @@ export default function Logon() {
   async function handleLogin(e) {
     e.preventDefault();
 
+    /* Acessando a rota de login do usuário e armazenando o ID no localStorage */
     try {
       const response = await api.post("sessions", { id });
-      
-      localStorage.setItem('ongId', id);
-      localStorage.setItem('ongName', response.data.name)
-      
-      history.push('/profile');
+
+      localStorage.setItem("ongId", id);
+      localStorage.setItem("ongName", response.data.name);
+
+      history.push("/profile");
     } catch (err) {
       alert("Falha no login, tente novamente.");
     }
@@ -32,6 +33,8 @@ export default function Logon() {
     <div className="logon-container">
       <section className="form">
         <img src={logoImg} alt="Be the hero" />
+
+        {/* Formulário que recebe o Id da ONG para realizar o login */}
         <form onSubmit={handleLogin}>
           <h1>Faça seu logon</h1>
           <input
@@ -43,6 +46,7 @@ export default function Logon() {
             Entrar
           </button>
 
+        {/* Redirecionamento para a página de cadastro */}
           <Link className="back-link" to="/register">
             <FiLogIn size={16} color="#e02041" />
             Não tenho cadastro

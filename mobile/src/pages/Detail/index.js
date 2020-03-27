@@ -13,6 +13,8 @@ export default function Detail() {
   const route = useRoute();
 
   const { incident } = route.params;
+  
+  /* Definindo mensagem que será enviada por email/whatsapp */
   const message = `Olá, ${
     incident.name
   }. Estou entrando em contato pois gostaria de ajudar o caso: "${
@@ -26,6 +28,7 @@ export default function Detail() {
     navigation.goBack();
   }
 
+  /* Disparada ao clicar no botão de email */
   function sendMail() {
     MailComposer.composeAsync({
       subject: `Herói do caso: ${incident.title}`,
@@ -33,7 +36,8 @@ export default function Detail() {
       body: message
     });
   }
-
+  
+  /* Disparada ao clicar no botão de whatsapp */
   function sendWhatsapp() {
     Linking.openURL(
       `whatsapp://send?phone=+55${incident.whatsapp}&text=${message}`

@@ -22,16 +22,17 @@ export default function Incidents() {
   }
 
   async function loadIncidents(){
-
+    /* Verificando se já está buscando Incidents do backend para não acumular requisições */
     if(loading){
       return;
     }
-
+    /* Verificando se todos os incidents já foram carregados */
     if(total > 0 && incidents.length === total){
       return;
     }
     setLoading(true);
-
+    
+    /* Buscando incidents do backend */
     const response = await api.get('incidents',{
       params: { page }
     });
@@ -43,6 +44,7 @@ export default function Incidents() {
     
   }
 
+  /* Chamada à função que carrega os incidents para já renderizar em tela */
   useEffect(()=>{
     loadIncidents();
   })

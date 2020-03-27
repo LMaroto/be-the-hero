@@ -5,7 +5,8 @@ module.exports = {
     const { page = 1 } = req.query;
 
     const [count] = await connection("incidents").count();
-
+    
+    /* Pegando Incidents do banco de dados */
     const incidents = await connection("incidents")
       .join("ongs", "ongs.id", "=", "incidents.ong_id")
       .limit(5)
@@ -18,7 +19,8 @@ module.exports = {
         "ongs.city",
         "ongs.uf"
       ]);
-
+    
+    /* Definindo contador nos headers da requisição */
     res.header("X-Total-Count", count["count(*)"]);
 
     return res.json(incidents);
@@ -28,6 +30,7 @@ module.exports = {
     const { title, description, value } = req.body;
     const ong_id = req.headers.authorization;
 
+    /* Armazenando novo incident no banco de dados */
     const [id] = await connection("incidents").insert({
       title,
       description,
@@ -41,16 +44,19 @@ module.exports = {
   async delete(req, res) {
     const { id } = req.params;
     const ong_id = req.headers.authorization;
-
+    
+    /* Selecionando o Incident no banco de dados */
     const incident = await connection("incidents")
       .where("id", id)
       .select("ong_id")
       .first();
 
+      /* Verificando se a ONG que fez a requisição é criadora do incident */
     if (incident.ong_id !== ong_id) {
       return res.status(401).json({ error: "Operation not permitted." });
     }
 
+    /* Apagando incident do banco de dados */
     await connection("incidents")
       .where("id", id)
       .delete();

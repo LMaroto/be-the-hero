@@ -20,7 +20,7 @@ E alguns extras:
 
 - [Express](https://expressjs.com/pt-br/)
 
-- [KnexJS)(http://knexjs.org/)
+- [KnexJS](http://knexjs.org/)
 
 
 

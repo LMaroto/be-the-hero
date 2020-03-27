@@ -1,3 +1,4 @@
+<img src="https://raw.githubusercontent.com/LMaroto/be-the-hero/master/frontend/src/assets/logo.svg"></img>
 # Be The Hero 
 Aplicação desenvolvida durante a Semana OmniStack 11.0
 
@@ -10,4 +11,19 @@ Neste projeto foram utilizadas as tecnologias:
 
 -- [Node.js](https://nodejs.org/en/)
 
+-- [ReactJS](https://reactjs.org/)
+
+--[React Native](https://reactnative.dev/)
+
+--[Expo](https://expo.io/)
+
+E alguns extras:
+
+--[Express](https://expressjs.com/pt-br/)
+
+--[KnexJS)(http://knexjs.org/)
+
+
+
 ![teste](https://raw.githubusercontent.com/LMaroto/be-the-hero/master/frontend/src/assets/heroes.png)
+
